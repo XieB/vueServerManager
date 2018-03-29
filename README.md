@@ -1,3 +1,5 @@
 # vue-test
 
-vue-cli安装的
+flask后台接口
+
+elementui前端
