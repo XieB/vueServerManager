@@ -11,7 +11,7 @@ export default new Router({
       name: 'index',
       component: index,
       meta: {
-        title: '在线查看'
+        title: '首页'
       }
     }
   ]
