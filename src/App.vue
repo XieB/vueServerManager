@@ -14,7 +14,7 @@
                     <span>服务器</span>
                 </template>
                 <el-menu-item-group>
-                    <el-menu-item index="/server/list">服务器列表</el-menu-item>
+                    <el-menu-item index="/server/lists">服务器列表</el-menu-item>
                 </el-menu-item-group>
             </el-submenu>
 
@@ -58,6 +58,7 @@ export default {
   padding: 0;
 }
 .left_nav-menu{
+    overflow: auto;
     width: 200px;
     position: fixed;
     top: 0;
@@ -66,5 +67,6 @@ export default {
 }
 .right_main{
     margin-left: 220px;
+    margin-top: 20px;
 }
 </style>
