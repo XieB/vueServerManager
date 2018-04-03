@@ -7,39 +7,33 @@
                     label="IP地址"
                     width="180">
                 <template slot-scope="scope">
-                    <i class="el-icon-time"></i>
-                    <span style="margin-left: 10px">{{ scope.row.date }}</span>
+                    <span style="margin-left: 10px">{{ scope.row.ip }}</span>
                 </template>
             </el-table-column>
             <el-table-column
                     label="归属"
                     width="180">
                 <template slot-scope="scope">
-                    <el-popover trigger="hover" placement="top">
-                        <p>姓名: {{ scope.row.name }}</p>
-                        <p>住址: {{ scope.row.address }}</p>
-                        <div slot="reference" class="name-wrapper">
-                            <el-tag size="medium">{{ scope.row.name }}</el-tag>
-                        </div>
-                    </el-popover>
+                    <el-tag size="medium" v-if="scope.row.area == '1'">阿里云</el-tag>
+                    <el-tag size="medium" v-if="scope.row.area == '2'">景安</el-tag>
                 </template>
             </el-table-column>
 
             <el-table-column
                     label="到期时间"
-                    width="180">
+                    width="200">
                 <template slot-scope="scope">
                     <i class="el-icon-time"></i>
-                    <span style="margin-left: 10px">{{ scope.row.date }}</span>
+                    <span style="margin-left: 10px">{{ scope.row.exptime }}</span>
                 </template>
             </el-table-column>
 
             <el-table-column
                     label="开通时间"
-                    width="180">
+                    width="200">
                 <template slot-scope="scope">
                     <i class="el-icon-time"></i>
-                    <span style="margin-left: 10px">{{ scope.row.date }}</span>
+                    <span style="margin-left: 10px">{{ scope.row.opentime }}</span>
                 </template>
             </el-table-column>
 
@@ -59,13 +53,15 @@
             <el-table-column
                     label="备注">
                 <template slot-scope="scope">
-                    <i class="el-icon-time"></i>
-                    <span style="margin-left: 10px">{{ scope.row.date }}</span>
+                    <span style="margin-left: 10px">{{ scope.row.marsk }}</span>
                 </template>
             </el-table-column>
         </el-table>
         <div class="button">
-            <el-button type="primary" size="medium">添加</el-button>
+            <router-link to="/server/add">
+                <el-button type="primary" size="medium">添加</el-button>
+            </router-link>
+
         </div>
     </div>
 </template>
@@ -75,32 +71,36 @@
         name: "lists",
         data() {
             return {
-                tableData: [{
-                    date: '2016-05-02',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-04',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1517 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1519 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }]
+                tableData : [],
             }
         },
         methods: {
             handleEdit(index, row) {
-                console.log(index, row);
+                this.$router.push({path : `/server/${row.id}`});
             },
             handleDelete(index, row) {
-                console.log(index, row);
+                this.$confirm('确认删除?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.$http.delete('/server/' + row.id).then(res=>{
+                        if (res.status == '204'){
+                            this.tableData.splice(index,1);
+                        }else{
+                            this.$message.error('出错了');
+                        }
+                    })
+                }).catch(() => {
+
+                });
             }
+        },
+        created : function(){
+            this.$http('/server/lists').then(res=>{
+                // console.log(res);
+                this.tableData = res.data;
+            })
         }
     }
 </script>

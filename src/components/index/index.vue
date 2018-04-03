@@ -4,7 +4,12 @@
 
 <script>
     export default {
-        name: "index"
+        name: "index",
+        // created : function(){
+        //     this.$http.post('http://www.ciservermanager.tt/server',{aa:'aa',bb : 'bb'}).then(res =>{
+        //         console.log(res);
+        //     })
+        // }
     }
 </script>
 

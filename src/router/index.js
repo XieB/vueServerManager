@@ -26,6 +26,13 @@ export default new Router({
           meta: {
               title: '添加服务器信息'
           }
+      },
+      {
+          path: '/server/:id',
+          component: resolve => {require(['@/components/server/add'], resolve)},
+          meta: {
+              title: '修改信息'
+          }
       }
   ]
 })

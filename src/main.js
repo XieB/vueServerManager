@@ -12,7 +12,7 @@ import './assets/css/reset.css'
 
 
 var axios_instance = axios.create({
-  baseURL: 'http://127.0.0.1:5000',
+  baseURL: 'http://www.ciservermanager.tt',
   transformRequest: [function (data) {
     data = Qs.stringify(data);
     return data;
