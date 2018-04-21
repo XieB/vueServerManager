@@ -67,6 +67,8 @@
 </template>
 
 <script>
+    import {deleteServer,getServers} from "@/async";
+
     export default {
         name: "lists",
         data() {
@@ -84,7 +86,7 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    this.$http.delete('/server/' + row.id).then(res=>{
+                    deleteServer(row.id).then(res=>{
                         if (res.status == '204'){
                             this.tableData.splice(index,1);
                         }else{
@@ -97,7 +99,7 @@
             }
         },
         created : function(){
-            this.$http('/server/lists').then(res=>{
+            getServers().then(res=>{
                 // console.log(res);
                 this.tableData = res.data;
             })

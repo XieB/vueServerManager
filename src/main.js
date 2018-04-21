@@ -4,25 +4,14 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import VueWechatTitle from 'vue-wechat-title'
-import axios from 'axios'
-import Qs from 'qs'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import './assets/css/reset.css'
 
 
-var axios_instance = axios.create({
-  baseURL: 'http://www.ciservermanager.tt',
-  transformRequest: [function (data) {
-    data = Qs.stringify(data);
-    return data;
-  }]
-})
-
 Vue.config.productionTip = false
 Vue.use(VueWechatTitle)
 Vue.use(ElementUI)
-Vue.prototype.$http = axios_instance
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

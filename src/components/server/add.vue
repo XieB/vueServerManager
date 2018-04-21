@@ -41,6 +41,8 @@
 </template>
 
 <script>
+    import {addServer,updateServer,getServer} from "@/async";
+
     export default {
         name: "add",
         data() {
@@ -56,7 +58,7 @@
         },
         methods: {
             onSubmit() {
-                this.$http.post('/server',this.form).then(res=>{
+                addServer(this.form).then(res=>{
                     if (res.status == '201'){
                         this.$router.push('/server/lists');
                     }else{
@@ -65,7 +67,7 @@
                 })
             },
             save : function(){
-                this.$http.put('/server/',this.form).then(res=>{
+                updateServer(this.form).then(res=>{
                     if (res.status == '201'){
                         this.$router.push('/server/lists');
                     }else{
@@ -82,7 +84,7 @@
         },
         created : function(){
             if (this.isEdit()){
-                this.$http('/server/' + this.$route.params.id).then(res=>{
+                getServer(this.$route.params.id).then(res=>{
                     this.form = res.data;
                 })
             }
