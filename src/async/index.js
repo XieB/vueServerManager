@@ -2,7 +2,7 @@ import axios from 'axios'
 import Qs from 'qs'
 
 var http = axios.create({
-    baseURL: 'http://www.ciservermanager.tt',
+    // baseURL: 'http://www.ciservermanager.tt',
     transformRequest: [function (data) {
         data = Qs.stringify(data);
         return data;

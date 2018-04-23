@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import VueWechatTitle from 'vue-wechat-title'
 import ElementUI from 'element-ui';
+import './mock';  //模拟数据
 import 'element-ui/lib/theme-chalk/index.css';
 import './assets/css/reset.css'
 
