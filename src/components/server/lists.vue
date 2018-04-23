@@ -87,7 +87,8 @@
                     type: 'warning'
                 }).then(() => {
                     deleteServer(row.id).then(res=>{
-                        if (res.status == '204'){
+                        console.log(res);
+                        if (res.data.status == '1'){
                             this.tableData.splice(index,1);
                         }else{
                             this.$message.error('出错了');

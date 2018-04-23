@@ -22,7 +22,7 @@ export function addServer(data){
 }
 
 export function updateServer(data){
-    return http.put('/server/',data);
+    return http.put('/server',data);
 }
 
 export function getServer(id){

@@ -59,7 +59,7 @@
         methods: {
             onSubmit() {
                 addServer(this.form).then(res=>{
-                    if (res.status == '201'){
+                    if (res.data.status == '1'){
                         this.$router.push('/server/lists');
                     }else{
                         this.$message.error('出错了');
@@ -68,7 +68,7 @@
             },
             save : function(){
                 updateServer(this.form).then(res=>{
-                    if (res.status == '201'){
+                    if (res.data.status == '1'){
                         this.$router.push('/server/lists');
                     }else{
                         this.$message.error('出错了');
